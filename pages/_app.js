@@ -7,12 +7,15 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    padding: 1rem;
+    font-family: sans-serif;
   }
 `;
 
 const theme = {
   colors: {
-    primary: '#0070f3',
+    primary: '#019592',
+    secondary: '#081f2c',
   },
 };
 

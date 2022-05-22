@@ -8,6 +8,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@styled-icons/feather": "^10.34.0",
     "next": "latest",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
