@@ -1,6 +1,6 @@
 import { string, shape, number } from 'prop-types';
 import styled from 'styled-components';
-import { currency } from '../utils/constants';
+import { useProfile } from '../context/profileContext';
 
 const StyledRoomResume = styled.section`
   font-size: 0.9em;
@@ -35,6 +35,7 @@ const BoardDiv = styled.div`
 `;
 
 export default function RoomResume({ roomName, date, board }) {
+  const { profileData } = useProfile();
   return (
     <StyledRoomResume>
       <RoomName>{roomName}</RoomName>
@@ -44,7 +45,7 @@ export default function RoomResume({ roomName, date, board }) {
           <strong>{board.name}</strong>
         </BoardDiv>
         <div>
-          <p>{`${currency} ${board.price}`}</p>
+          <strong>{`${profileData?.currencyLabel} ${board.price}`}</strong>
         </div>
       </Content>
     </StyledRoomResume>

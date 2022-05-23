@@ -1,6 +1,6 @@
 import { string, instanceOf, func } from 'prop-types';
 import styled from 'styled-components';
-import { currency } from '../utils/constants';
+import { useProfile } from '../context/profileContext';
 
 const StyledRoomList = styled.section`
   font-size: 0.9em;
@@ -54,12 +54,13 @@ const BookingButton = styled.button`
   padding: 5px 10px;
   transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.19), 0 6px 13px 0 rgba(0, 0, 0, 0.24);
-  &:active {
+  &:active, :hover {
     box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.23), 3px 8px 20px 0 rgba(0, 0, 0, 0.18), -3px 8px 20px 0 rgba(0, 0, 0, 0.18);
   }
 `;
 
 export default function RoomList({ header, list, onButtonClick }) {
+  const { profileData } = useProfile();
   return (
     <StyledRoomList>
       {header && <ListHeader>{header}</ListHeader>}
@@ -67,7 +68,7 @@ export default function RoomList({ header, list, onButtonClick }) {
         {list && list.map((board) => (
           <BoardItem key={board.name}>
             <NameSpan>{board.name}</NameSpan>
-            <PriceSpan>{`${currency} ${board.price}`}</PriceSpan>
+            <PriceSpan>{`${profileData?.currencyLabel} ${board.price}`}</PriceSpan>
             <BookingButton type="button" onClick={() => onButtonClick({ roomName: header, board })}>reservar</BookingButton>
           </BoardItem>
         ))}
